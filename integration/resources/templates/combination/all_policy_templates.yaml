@@ -181,6 +181,9 @@ Resources:
       - EFSWriteAccessPolicy:
           AccessPoint: name
           FileSystem: name
+          
+      - S3MultipartUploadPolicy:
+          BucketName: name
 
   MyFunction3:
     Type: AWS::Serverless::Function
