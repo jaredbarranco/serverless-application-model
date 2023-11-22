@@ -1801,6 +1801,51 @@
         }
       }
     },
+    "S3MultipartUploadPolicy": {
+      "Definition": {
+        "Statement": [
+          {
+            "Sid": "Stmt12345",
+            "Action": [
+              "s3:AbortMultipartUpload",
+              "s3:GetObject",
+              "s3:ListBucketMultipartUploads",
+              "s3:ListMultipartUploadParts",
+              "s3:PutObject"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+              {
+                "Fn::Sub": [
+                  "arn:${AWS::Partition}:s3:::${bucketName}",
+                  {
+                    "bucketName": {
+                      "Ref": "BucketName"
+                    }
+                  }
+                ]
+              },
+              {
+                "Fn::Sub": [
+                  "arn:${AWS::Partition}:s3:::${bucketName}/*",
+                  {
+                    "bucketName": {
+                      "Ref": "BucketName"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "Description": "Gives permissions to view, create, list, and abort multipart object uploads to a S3 Bucket",
+      "Parameters": {
+        "BucketName": {
+          "Description": "Name of the Bucket"
+        }
+      }
+    },
     "S3ReadPolicy": {
       "Definition": {
         "Statement": [
